@@ -14,13 +14,16 @@ const LoadingBody = (() => {
 const buttonEventListener = (() => {
   let form = document.getElementById("weatherForm");
   let input = document.getElementById("input");
-  let theObj = {};
   form.addEventListener("submit", (event) => {
     event.preventDefault();
     hitTheApi(input.value)
       .then((data) => processData(data))
-      //.then((obj)=>{theObj=obj})
-      .then((x) => console.log(x))
+      .then((obj) => DOMelements(obj))
+      .then(() => {
+        let container = document.getElementById("weatherResponse");
+        container.classList.remove("hidden");
+      })
       .catch((e) => console.log(e));
+      form.classList.add('hidden')
   });
 })();

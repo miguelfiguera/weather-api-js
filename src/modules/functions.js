@@ -25,9 +25,56 @@ async function hitTheApi(location) {
 }
 
 function DOMelements(obj) {
-  // iterate over the object to create DOM elements
-  //that uses the key and the value as inner text
-  //then return that
+  let container = document.createElement("div"); //or dialog, lets see.
+  container.id = "weatherResponse";
+  let pName = document.createElement("p");
+  let pRegion = document.createElement("p");
+  let pCountry = document.createElement("p");
+  let pCloud = document.createElement("p");
+  let pTermSensation = document.createElement("p");
+  let pTemp = document.createElement("p");
+  let pHumidity = document.createElement("p");
+  let pWindDirection = document.createElement("p");
+  let pWindSpeed = document.createElement("p");
+  let buttonClose=document.createElement('button')
+  buttonClose.innerText='Close'
+
+  buttonClose.addEventListener('click',()=>{
+    let form = document.getElementById("weatherForm");
+    form.classList.remove('hidden')
+    container.remove()
+  })
+
+  let arr = [
+    pName,
+    pRegion,
+    pCountry,
+    pCloud,
+    pTermSensation,
+    pTemp,
+    pHumidity,
+    pWindDirection,
+    pWindSpeed,
+    buttonClose
+  ];
+
+  arr.forEach((e) => container.appendChild(e));
+
+  pName.innerText=`Name: ${obj.name}`
+  pRegion.innerText=`Region: ${obj.region}`
+  pCountry.innerText=`Country: ${obj.country}`
+  pCloud.innerText=`Cloud ${obj.cloud}`
+  pTermSensation.innerText=`Term Sensation: ${obj.termSensation}`
+  pTemp.innerText=`Temp (celsius): ${obj.temp}`
+  pHumidity.innerText=`Humidity: ${obj.humidity}`
+  pWindDirection.innerText=`Wind Direction: ${obj.windDirection}`
+  pWindSpeed.innerText=`Wind Speed: ${obj.windSpeed}`
+
+  let body = document.getElementsByTagName("body");
+  container.classList.add('hidden')
+  body[0].appendChild(container);
+
+
 }
 
 export { hitTheApi, processData, DOMelements };
