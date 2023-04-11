@@ -23,7 +23,9 @@ const buttonEventListener = (() => {
         let container = document.getElementById("weatherResponse");
         container.classList.remove("hidden");
       })
-      .catch((e) => console.log(e));
+      .catch((e) =>{  console.log(e)
+      form.classList.remove('hidden')
+    alert('An error has ocurred, check the console or try again( watch your spelling).')});
       form.classList.add('hidden')
   });
 })();
